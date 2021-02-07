@@ -25,6 +25,6 @@ public class ClassLoaderTest1 {
         
         tmpClsLoader = CurveDB.class.getClassLoader();
         System.out.println(tmpClsLoader);//sun.misc.Launcher$ExtClassLoader@4b67cf4d
-        
+
     }
 }
