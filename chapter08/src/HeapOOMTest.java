@@ -16,6 +16,19 @@ import java.util.Random;
  * -XX:SurvivorRatio=8: to set the Eden:S0:S1 = 8:1:1
  *
  * -Xmn300m: to set the size of YoungGen(usually default one)
+ *
+ * notes: basically evey new object is created in Eden, once Eden is full, trigger the Minor GC.
+ *        Minor GC will check the object is being occupied or not, if not release it, if yes move the object to Survivor.
+ *        then add 1 to the age calculator.
+ *
+ *        if the Eden is full again, move the occupied object and copy all the object from Survivor1 (From Area)
+ *        to the other free Survivor2 (To Area).
+ *
+ *        Minor GC will release the memory in Eden and Survivoe, but only the fullness of Eden will trigger MinorGC
+ *
+ *        the default behavior is the age calculator more then 15, will move the object to the Tenure generation
+ *
+ *        we can use "-XX:MaxTenuringThreshold=<n>"to modify the top value of the GC times(age calculator)
  */
 public class HeapOOMTest {
     public static void main(String[] args){
